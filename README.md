@@ -11,7 +11,7 @@ A reproducible NLP framework for Nigerian Pidgin (`pcm`) sentiment classificatio
 
 ### 🚀 Live Demo
 
-[**Try the Nigerian Pidgin Sentiment Analyzer**](https://pidinsenti.streamlit.app)
+[**Try the Nigerian Pidgin Sentiment Analyzer**](https://pidginsenti.streamlit.app)
 
 Interactive Streamlit application powered by the final fine-tuned `withus/afro-xlmr-weighted` model, hosted on Hugging Face.
 
