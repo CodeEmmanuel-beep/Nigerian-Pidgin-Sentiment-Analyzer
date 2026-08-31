@@ -1,8 +1,28 @@
 # Nigerian Pidgin Sentiment Analysis Framework
 
-A production-ready NLP repository fine-tuning Afro-XLM-R (`Davlan/afro-xlmr-base`) for Nigerian Pidgin (`pcm`) sentiment classification. This project benchmarks classical machine learning models against a two-stage transformer fine-tuning pipeline, addressing severe class imbalance and crowd-annotator label noise through custom class weighting, increased weight decay, lower learning rates, and label smoothing.
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python\&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-ee4c2c?logo=pytorch\&logoColor=white)](https://pytorch.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas\&logoColor=white)](https://pandas.pydata.org/)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Machine%20Learning-f7931e?logo=scikit-learn\&logoColor=white)](https://scikit-learn.org/)
+[![Hugging Face Transformers](https://img.shields.io/badge/Hugging%20Face-Transformers-yellow?logo=huggingface\&logoColor=black)](https://huggingface.co/docs/transformers/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Live%20Demo-ff4b4b?logo=streamlit\&logoColor=white)](https://streamlit.io/)
 
-The final fine-tuned model is hosted on Hugging Face as `withus/afro-xlmr-weighted` and deployed as an interactive Streamlit NLP application.
+A reproducible NLP framework for Nigerian Pidgin (`pcm`) sentiment classification, benchmarking classical machine learning against a two-stage Afro-XLM-R fine-tuning pipeline. The project addresses severe class imbalance and crowd-annotator label noise through dynamic class weighting, regularization, reduced learning rates, and label smoothing.
+
+### 🚀 Live Demo
+
+[**Try the Nigerian Pidgin Sentiment Analyzer**](https://pidinsenti.streamlit.app)
+
+Interactive Streamlit application powered by the final fine-tuned `withus/afro-xlmr-weighted` model, hosted on Hugging Face.
+
+### 🤗 Model
+
+[**View the fine-tuned model on Hugging Face**](https://huggingface.co/withus/afro-xlmr-weighted)
+
+### 📌 Project Overview
+
+This project investigates sentiment classification for Nigerian Pidgin and evaluates the progression from a classical TF-IDF + Logistic Regression baseline to progressively improved transformer-based models.
+
 
 ```text
 nigerian-pidgin-sentiment
