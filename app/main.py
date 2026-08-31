@@ -1,9 +1,16 @@
+import os
+
+os.environ["HF_HOME"] = "/tmp/huggingface"
+os.environ["HF_HUB_CACHE"] = "/tmp/huggingface/hub"
+os.environ["TRANSFORMERS_CACHE"] = "/tmp/huggingface/transformers"
+
 import torch
 from app.schemas import SentimentRequest, SentimentResponse
 from fastapi import FastAPI, HTTPException
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 app = FastAPI(title="Nigerian Pidgin Sentiment Analyzer API", version="1.0.0")
+
 
 MODEL_PATH = "withus/afro-xlmr-weighted"
 LABEL_MAPPING = {0: "Positive", 1: "Neutral", 2: "Negative"}
