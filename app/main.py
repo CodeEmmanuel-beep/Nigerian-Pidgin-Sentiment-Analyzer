@@ -18,7 +18,7 @@ except Exception as e:
 
 @app.get("/")
 def health_check():
-    return {"status": "ok", "model": "afro-xlmr-weighted"}
+    return {"status": "ok", "model_in_use": "afro-xlmr-weighted"}
 
 
 @app.post("/predict", response_model=SentimentResponse)
