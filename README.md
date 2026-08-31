@@ -237,6 +237,4 @@ python -m pytest
 
 **Student Name:** Emmanuel Eke
 
-**Email:** emmanuelchiedueke01@gmail.com
-
 **Student Email:** [emmanuelchiedueke01@gmail.com](mailto:emmanuelchiedueke01@gmail.com)
