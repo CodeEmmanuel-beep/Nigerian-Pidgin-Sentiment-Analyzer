@@ -1,11 +1,11 @@
 from pydantic import BaseModel, Field
 
 
-class PredictRequest(BaseModel):
+class SentimentRequest(BaseModel):
     text: str = Field(..., example="Dis product make me happy well well")
 
 
-class PredictResponse(BaseModel):
+class SentimentResponse(BaseModel):
     text: str
     sentiment: str
     confidence: float
