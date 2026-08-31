@@ -5,7 +5,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 app = FastAPI(title="Nigerian Pidgin Sentiment Analyzer API", version="1.0.0")
 
-MODEL_PATH = "models/afro-xlmr-weighted"
+MODEL_PATH = "withus/afro-xlmr-weighted"
 LABEL_MAPPING = {0: "Positive", 1: "Neutral", 2: "Negative"}
 
 try:
