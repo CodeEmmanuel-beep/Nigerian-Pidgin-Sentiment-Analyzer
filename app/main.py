@@ -1,54 +1,57 @@
-import os
-
-os.environ["HF_HOME"] = "/tmp/huggingface"
-os.environ["HF_HUB_CACHE"] = "/tmp/huggingface/hub"
-os.environ["TRANSFORMERS_CACHE"] = "/tmp/huggingface/transformers"
-
+import streamlit as st
 import torch
-from app.schemas import SentimentRequest, SentimentResponse
-from fastapi import FastAPI, HTTPException
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
-
-app = FastAPI(title="Nigerian Pidgin Sentiment Analyzer API", version="1.0.0")
-
+from transformers import (
+    AutoModelForSequenceClassification,
+    AutoTokenizer,
+)
 
 MODEL_PATH = "withus/afro-xlmr-weighted"
-LABEL_MAPPING = {0: "Positive", 1: "Neutral", 2: "Negative"}
 
-try:
+LABEL_MAPPING = {
+    0: "Positive",
+    1: "Neutral",
+    2: "Negative",
+}
+
+
+@st.cache_resource
+def load_model():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
     model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
     model.eval()
-except Exception as e:
-    raise RuntimeError(f"Failed to load model artifacts from {MODEL_PATH}: {e}")
+    return tokenizer, model
 
 
-@app.get("/")
-def health_check():
-    return {"status": "ok", "model_in_use": "afro-xlmr-weighted"}
+tokenizer, model = load_model()
 
 
-@app.post("/predict", response_model=SentimentResponse)
-def predict_sentiment(payload: SentimentRequest):
-    if not payload.text.strip():
-        raise HTTPException(status_code=400, detail="Input text cannot be empty.")
+st.title("Nigerian Pidgin Sentiment Analyzer")
 
-    inputs = tokenizer(
-        payload.text,
-        return_tensors="pt",
-        truncation=True,
-        max_length=128,
-        padding=True,
-    )
+text = st.text_area(
+    "Enter Nigerian Pidgin text", placeholder="e.g. this movie sweet die!"
+)
 
-    with torch.no_grad():
-        outputs = model(**inputs)
-        probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
+if st.button("Analyze"):
+    if not text.strip():
+        st.warning("Please enter some text.")
+    else:
+        inputs = tokenizer(
+            text,
+            return_tensors="pt",
+            truncation=True,
+            max_length=128,
+        )
+
+        with torch.no_grad():
+            outputs = model(**inputs)
+            probs = torch.nn.functional.softmax(
+                outputs.logits,
+                dim=-1,
+            )
+
         confidence, predicted_class = torch.max(probs, dim=-1)
 
-    idx = predicted_class.item()
-    return SentimentResponse(
-        text=payload.text,
-        label=LABEL_MAPPING.get(idx, "Unknown"),
-        confidence=round(confidence.item(), 4),
-    )
+        label = LABEL_MAPPING[predicted_class.item()]
+
+        st.subheader(label)
+        st.write(f"Confidence: {confidence.item():.2%}")
