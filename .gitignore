@@ -1,0 +1,28 @@
+cat << 'EOF' > .gitignore
+# Virtual Environment
+.venv/
+venv/
+
+# Model Binaries & Checkpoints (Heavy Files)
+models/*
+!models/.gitkeep
+*.safetensors
+*.joblib
+*.bin
+*.pt
+*.pth
+
+# Python Cache & Artifacts
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# OS & IDE Files
+.DS_Store
+.vscode/
+.idea/
+EOF
+
+#env
+.env
+.env
