@@ -22,7 +22,7 @@ print(f"Using Device: {device}")
 TEST_DATA_PATH = "../data/processed/test.csv"
 TFIDF_VECTORIZER_PATH = "../models/tfidf_vectorizer.joblib"
 LOGISTIC_REGRESSION_PATH = "../models/logistic_regression_baseline.joblib"
-AFRO_XLMR_PATH = "../models/afro-xlmr-best/afro-xlmr-baseline"
+AFRO_XLMR_PATH = "../models/afro-xlmr-baseline"
 LABEL_NAMES = ["Positive", "Neutral", "Negative"]
 
 df_test = pd.read_csv(TEST_DATA_PATH)
